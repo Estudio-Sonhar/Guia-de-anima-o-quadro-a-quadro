@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Guia de Animação</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+
+<style>
+
+body{
+font-family:cursive;
+margin:0;
+background:linear-gradient(135deg,#e6e6ff,#d9f0ff);
+scroll-behavior:smooth;
+}
+
+/* HEADER */
+
+header{
+background:linear-gradient(90deg,#8f7cff,#7cc8ff);
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+section{
+background:#f8f6ff;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
+
+/* LISTA */
+
+ul li{
+cursor:pointer;
+color:#5a5ad6;
+margin:5px 0;
+}
+
+li.ativo{
+background:#dcdcff;
+border-radius:5px;
+padding:5px;
+}
+
+/* PRINCIPIOS */
+
+.principio{
+margin-bottom:25px;
+}
+
+/* CANVAS */
+
+canvas{
+background:white;
+border:2px solid #aaa;
+border-radius:8px;
+}
+
+/* ================= CHAT ================= */
+
+#chatButton{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:#8f7cff;
+color:white;
+border:none;
+cursor:pointer;
+font-size:20px;
+}
+
+#chatContainer{
+position:fixed;
+bottom:90px;
+right:20px;
+width:340px;
+height:480px;
+background:white;
+border-radius:12px;
+display:none;
+flex-direction:column;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+overflow:hidden;
+}
+
+#chatHeader{
+background:#8f7cff;
+color:white;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+
+#messages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.msg{
+max-width:75%;
+padding:10px;
+border-radius:10px;
+font-size:14px;
+word-wrap:break-word;
+}
+
+.user{
+background:#cfd6ff;
+align-self:flex-end;
+}
+
+.bot{
+background:#ececff;
+align-self:flex-start;
+}
+
+#chatInputArea{
+display:flex;
+border-top:1px solid #ddd;
+}
+
+#userInput{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+}
+
+#chatInputArea button{
+background:#8f7cff;
+color:white;
+border:none;
+padding:10px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Guia de Animação Quadro a Quadro</h1>
+</header>
+
+<div class="container">
+
+<section>
+<h2>Princípios</h2>
+<ul id="lista">
+<li onclick="ir('squash',this)">Squash and Stretch</li>
+<li onclick="ir('antecipacao',this)">Antecipação</li>
+<li onclick="ir('staging',this)">Staging</li>
+<li onclick="ir('pose',this)">Pose to Pose</li>
+<li onclick="ir('follow',this)">Follow Through</li>
+<li onclick="ir('slow',this)">Slow In / Slow Out</li>
+<li onclick="ir('arcos',this)">Arcos</li>
+<li onclick="ir('secundaria',this)">Ação secundária</li>
+<li onclick="ir('timing',this)">Timing</li>
+<li onclick="ir('exagero',this)">Exagero</li>
+<li onclick="ir('solido',this)">Desenho sólido</li>
+<li onclick="ir('apelo',this)">Apelo</li>
+</ul>
+</section>
+
+<section>
+<h2>Explicações</h2>
+
+<div id="squash" class="principio"><h3>Squash and Stretch</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\Squash__and_stretch.gif">
+<p>Mostra elasticidade e peso, fazendo objetos deformarem ao se mover.</p></div>
+<div id="antecipacao" class="principio"><h3>Antecipação</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\mix5pvr8.png">
+<p>Movimento de preparação antes da ação principal.</p></div>
+<div id="staging" class="principio"><h3>Staging</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\standing-pose.gif">
+<p>Organiza a cena para clareza visual.</p></div>
+<div id="pose" class="principio"><h3>Pose to Pose</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\Walk Cycle Key Poses.gif">
+<p>Define poses-chave antes dos intermediários.</p></div>
+<div id="follow" class="principio"><h3>Follow Through</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\follow_through.gif">
+<p>Partes continuam após o movimento.</p></div>
+<div id="slow" class="principio"><h3>Slow In / Slow Out</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\slow_in_slow_out_character_front - Copia.webp">
+<p>Movimentos começam e terminam devagar.</p></div>
+<div id="arcos" class="principio"><h3>Arcos</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\Arcos_de_movimento.gif">
+<p>Movimentos seguem trajetórias curvas.</p></div>
+<div id="secundaria" class="principio"><h3>Ação secundária</h3>
+    <img src="meuGif.gif">
+<p>Complementa a ação principal.</p></div>
+<div id="timing" class="principio"><h3>Timing</h3>
+    <img src="c:\Users\Aluno\Desktop\Carol\Timing_2.gif">
+<p>Controla velocidade e peso.</p></div>
+<div id="exagero" class="principio"><h3>Exagero</h3>
+    <img src="meuGif.gif">
+<p>Amplifica movimentos para mais impacto.</p></div>
+<div id="solido" class="principio"><h3>Desenho sólido</h3>
+    <img src="meuGif.gif">
+<p>Volume e forma consistentes.</p></div>
+<div id="apelo" class="principio"><h3>Apelo</h3>
+    <img src="meuGif.gif">
+<p>Personagens interessantes e agradáveis.</p></div>
+
+</section>
+
+<section>
+
+<h2>Ferramenta de Animação</h2>
+
+<canvas id="canvas" width="350" height="300"></canvas>
+
+<br><br>
+
+<button onclick="prevFrame()">◀</button>
+<button onclick="nextFrame()">▶</button>
+<button onclick="play()">Play</button>
+<button onclick="toggleOnion()">Onion</button>
+<button onclick="toggleEraser()">Borracha</button>
+<button onclick="clearFrame()">Limpar</button>
+<button onclick="exportGIF()">Exportar</button>
+
+<br><br>
+
+<input type="range" id="brushSize" min="1" max="20" value="5">
+<input type="color" id="colorPicker">
+
+</section>
+
+</div>
+
+<!-- CHAT -->
+
+<button id="chatButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M589.5-372.5Q602-385 602-402t-12.5-29.5Q577-444 560-444t-29.5 12.5Q518-419 518-402t12.5 29.5Q543-360 560-360t29.5-12.5ZM530-488h60q0-29 6-42.5t28-35.5q30-30 40-48.5t10-43.5q0-45-31.5-73.5T560-760q-41 0-71.5 23T446-676l54 22q9-25 24.5-37.5T560-704q24 0 39 13.5t15 36.5q0 14-8 26.5T578-596q-33 29-40.5 45.5T530-488ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg></button>
+
+<div id="chatContainer">
+
+<div id="chatHeader">
+<span>Assistente</span>
+<button onclick="toggleChat()">✖</button>
+</div>
+
+<div id="messages"></div>
+
+<div id="chatInputArea">
+<input id="userInput">
+<button onclick="responder()">Enviar</button>
+</div>
+
+</div>
+
+<script>
+
+/* LISTA */
+
+let lista=document.querySelectorAll("#lista li")
+
+function ir(id,el){
+document.getElementById(id).scrollIntoView()
+lista.forEach(l=>l.classList.remove("ativo"))
+el.classList.add("ativo")
+}
+
+/* CANVAS */
+
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
+
+let frames=[null]
+let frameIndex=0
+let onion=true
+let eraser=false
+let drawing=false
+
+let lastX=0,lastY=0
+
+const brushSize=document.getElementById("brushSize")
+const colorPicker=document.getElementById("colorPicker")
+
+canvas.onmousedown=e=>{
+drawing=true
+let r=canvas.getBoundingClientRect()
+lastX=e.clientX-r.left
+lastY=e.clientY-r.top
+}
+
+canvas.onmouseup=()=>drawing=false
+canvas.onmouseleave=()=>drawing=false
+
+canvas.onmousemove=e=>{
+if(!drawing) return
+
+let r=canvas.getBoundingClientRect()
+let x=e.clientX-r.left
+let y=e.clientY-r.top
+
+ctx.lineWidth=brushSize.value
+ctx.lineCap="round"
+
+ctx.globalCompositeOperation=eraser?"destination-out":"source-over"
+ctx.strokeStyle=colorPicker.value
+
+ctx.beginPath()
+ctx.moveTo(lastX,lastY)
+ctx.lineTo(x,y)
+ctx.stroke()
+
+lastX=x
+lastY=y
+
+frames[frameIndex]=canvas.toDataURL()
+}
+
+function loadFrame(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+if(onion && frames[frameIndex-1]){
+let img=new Image()
+img.src=frames[frameIndex-1]
+img.onload=()=>{
+ctx.globalAlpha=0.2
+ctx.drawImage(img,0,0)
+ctx.globalAlpha=1
+drawCurrent()
+}
+}else drawCurrent()
+}
+
+function drawCurrent(){
+if(!frames[frameIndex]) return
+let img=new Image()
+img.src=frames[frameIndex]
+img.onload=()=>ctx.drawImage(img,0,0)
+}
+
+function nextFrame(){frameIndex++; if(!frames[frameIndex]) frames[frameIndex]=null; loadFrame()}
+function prevFrame(){if(frameIndex>0){frameIndex--; loadFrame()}}
+
+function toggleOnion(){onion=!onion; loadFrame()}
+function toggleEraser(){eraser=!eraser}
+function clearFrame(){frames[frameIndex]=null; ctx.clearRect(0,0,canvas.width,canvas.height)}
+
+function play(){
+let i=0
+let interval=setInterval(()=>{
+if(i>=frames.length){clearInterval(interval);return}
+ctx.clearRect(0,0,canvas.width,canvas.height)
+if(frames[i]){
+let img=new Image()
+img.src=frames[i]
+img.onload=()=>ctx.drawImage(img,0,0)
+}
+i++
+},120)
+}
+
+function exportGIF(){
+let gif=new GIF({workers:2,quality:10})
+frames.forEach(f=>{
+if(!f) return
+let img=new Image()
+img.src=f
+gif.addFrame(img,{delay:120})
+})
+gif.on("finished",b=>{
+let a=document.createElement("a")
+a.href=URL.createObjectURL(b)
+a.download="animacao.gif"
+a.click()
+})
+gif.render()
+}
+
+/* CHAT */
+
+const API_KEY="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"
+
+function toggleChat(){
+chatContainer.style.display =
+chatContainer.style.display==="flex"?"none":"flex"
+}
+
+chatButton.onclick=toggleChat
+
+userInput.addEventListener("keypress",e=>{
+if(e.key==="Enter") responder()
+})
+
+function addMessage(text,type){
+let div=document.createElement("div")
+div.className="msg "+type
+div.innerText=text
+messages.appendChild(div)
+messages.scrollTop=messages.scrollHeight
+}
+
+async function responder(){
+
+let msg=userInput.value.trim()
+if(!msg) return
+
+addMessage(msg,"user")
+userInput.value=""
+
+let loading=document.createElement("div")
+loading.className="msg bot"
+loading.innerText="Digitando..."
+messages.appendChild(loading)
+
+try{
+
+let res=await fetch("https://api.groq.com/openai/v1/chat/completions",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer "+API_KEY
+},
+body:JSON.stringify({
+model:"llama-3.3-70b-versatile",
+messages:[{role:"user",content:msg}]
+})
+})
+
+let data=await res.json()
+
+loading.remove()
+addMessage(data.choices[0].message.content,"bot")
+
+}catch{
+loading.innerText="Erro 😢"
+}
+
+}
+
+</script>
+
+</body>
+</html>
